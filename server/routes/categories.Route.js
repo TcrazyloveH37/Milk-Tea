@@ -2,6 +2,10 @@
 const express = require('express');
 const router = express.Router();
 
+// Middleware
+const auth = require('../middleware/auth.Middleware');
+const admin = require('../middleware/admin.Middleware');
+
 // Controller
 const categoriesController = require('../controllers/categories.Controller');
 
@@ -16,7 +20,7 @@ router.get('/', categoriesController.get_allCategories);
 
 //--------------------------------------------POST-----------------------------------------------
 //... post categories
-router.post('/', categoriesController.post);
+router.post('/', auth, categoriesController.post);
 
 //--------------------------------------------PUT-----------------------------------------------
 //... put categories
@@ -24,6 +28,6 @@ router.put('/:_id', categoriesController.put);
 
 //--------------------------------------------DELETE-----------------------------------------------
 //... delete categories
-router.delete('/:_id', categoriesController.delete);
+router.delete('/:_id', [ auth, admin ], categoriesController.delete);
 
 module.exports = router;

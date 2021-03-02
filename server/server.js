@@ -1,7 +1,13 @@
 // 3rd dependencies
+const config = require('config');
+require('dotenv').config();
 const express = require('express');
 
 // My config
+if (!config.get('jwtPrivateKey')) {
+	console.error('FATAL ERROR: jwtPrivateKey is not define');
+	process.exit(1);
+}
 const { connectToDB } = require('./config/connectDB');
 
 //My routes
@@ -22,3 +28,6 @@ route(app);
 app.listen(PORT, () => {
 	console.log(`http://localhost:${PORT}/`);
 });
+
+// Test
+// console.log(process.env.VIETNAM);

@@ -1,6 +1,8 @@
 //3rd dependencies
 const mongoose = require('mongoose');
-const ObjectID = mongoose.Types.ObjectId;
+
+// Config
+const { validateObjectID } = require('../config/validateObjectID');
 
 const trashSchema = new mongoose.Schema(
 	{
@@ -19,24 +21,25 @@ const trashSchema = new mongoose.Schema(
 const Trash = new mongoose.model('trash', trashSchema, 'trash');
 
 const validateObjectIDOfTrash = async productsID => {
-	const errors = {};
-	errors.productsID = {};
+	return await validateObjectID(productsID, 'productsID', Trash);
+	// const errors = {};
+	// errors.productsID = {};
 
-	for (let id of productsID) {
-		if (!ObjectID.isValid(id)) {
-			errors.productsID[id] = 'Sản Phẩm Không Hợp Lệ';
-			continue;
-		}
+	// for (let id of productsID) {
+	// 	if (!ObjectID.isValid(id)) {
+	// 		errors.productsID[id] = 'Sản Phẩm Không Hợp Lệ';
+	// 		continue;
+	// 	}
 
-		const product = await Trash.findById(id);
-		if (!product) {
-			errors.productsID[id] = 'Sản Phẩm Không Tồn Tại';
-		}
-	}
+	// 	const product = await Trash.findById(id);
+	// 	if (!product) {
+	// 		errors.productsID[id] = 'Sản Phẩm Không Tồn Tại';
+	// 	}
+	// }
 
-	if (Object.keys(errors.productsID).length >= 1) return errors;
+	// if (Object.keys(errors.productsID).length >= 1) return errors;
 
-	return null;
+	// return null;
 };
 
 module.exports = { trashSchema, Trash, validateObjectIDOfTrash };

@@ -1,10 +1,14 @@
 // 3rd dependencies
 const mongoose = require('mongoose');
-const ObjectID = mongoose.Types.ObjectId;
+
+// Another Model
 const { validateObjectIDOfCategory } = require('./category.Model');
 
 // CONSTANT
 const { default: { CATEGORY_ID } } = require('../config/const');
+
+// Config
+const { validateObjectID } = require('../config/validateObjectID');
 
 const productSchema = new mongoose.Schema(
 	{
@@ -93,24 +97,25 @@ const validateProduct = async product => {
 };
 
 const validateObjectIDOfProduct = async productsID => {
-	const errors = {};
-	errors.productsID = {};
+	return await validateObjectID(productsID, 'productsID', Product);
+	// const errors = {};
+	// errors.productsID = {};
 
-	for (let id of productsID) {
-		if (!ObjectID.isValid(id)) {
-			errors.productsID[id] = 'Sản Phẩm Không Hợp Lệ';
-			continue;
-		}
+	// for (let id of productsID) {
+	// 	if (!ObjectID.isValid(id)) {
+	// 		errors.productsID[id] = 'Sản Phẩm Không Hợp Lệ';
+	// 		continue;
+	// 	}
 
-		const product = await Product.findById(id);
-		if (!product) {
-			errors.productsID[id] = 'Sản Phẩm Không Tồn Tại';
-		}
-	}
+	// 	const product = await Product.findById(id);
+	// 	if (!product) {
+	// 		errors.productsID[id] = 'Sản Phẩm Không Tồn Tại';
+	// 	}
+	// }
 
-	if (Object.keys(errors.productsID).length >= 1) return errors;
+	// if (Object.keys(errors.productsID).length >= 1) return errors;
 
-	return null;
+	// return null;
 };
 
 module.exports = { Product, validateProduct, validateObjectIDOfProduct };
