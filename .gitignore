@@ -2,3 +2,6 @@
 /client
 
 .env
+
+uncaughtExceptions.log
+server/uncaughtExceptions.log

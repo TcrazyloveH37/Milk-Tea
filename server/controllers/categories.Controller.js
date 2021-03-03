@@ -4,34 +4,37 @@ const {
 	validateCategory,
 	validateObjectIDOfCategory
 } = require('../models/category.Model');
+
 const { Product } = require('../models/product.Model');
-const { Trash } = require('../models/trash.Model');
 
 // CONSTANT
 const { default: { CATEGORY_ID } } = require('../config/const');
+
+// Middleware
+const asyncMiddleware = require('../middleware/async.Middleware');
 
 // Inital ctl
 const categoriesController = {};
 
 //-----------------------------------GET----------------------------------
 // [GET] /api/categories/:_id 		// get one category
-categoriesController.get_oneCategory = async (req, res) => {
+categoriesController.get_oneCategory = asyncMiddleware(async (req, res) => {
 	const objError = await validateObjectIDOfCategory([ req.params._id ]);
 	if (objError !== null) return res.status(404).send({ errors: { ...objError } });
 
 	const category = await Category.findById(req.params._id);
 
 	return res.status(200).send(category);
-};
+});
 
 // [GET] /api/categories/ 			// get all category
-categoriesController.get_allCategories = async (req, res) => {
+categoriesController.get_allCategories = asyncMiddleware(async (req, res) => {
 	const allCategories = await Category.find();
 
 	const sorted = allCategories.sort((a, b) => a.name.localeCompare(b.name));
 
 	return res.status(200).send(sorted);
-};
+});
 
 //-----------------------------------POST----------------------------------
 // [POST] /api/categories 			// create new category

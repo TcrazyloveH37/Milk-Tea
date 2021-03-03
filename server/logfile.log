@@ -1,0 +1,51 @@
+{"level":"error","message":"promise err promise err","stack":"Error: promise err\n    at Object.<anonymous> (D:\\Milk-Tea\\server\\server.js:72:26)\n    at Module._compile (internal/modules/cjs/loader.js:1063:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)\n    at Module.load (internal/modules/cjs/loader.js:928:32)\n    at Function.Module._load (internal/modules/cjs/loader.js:769:14)\n    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)\n    at internal/main/run_main_module.js:17:47"}
+{"level":"error","message":"promise err promise err","stack":"Error: promise err\n    at Object.<anonymous> (D:\\Milk-Tea\\server\\server.js:71:26)\n    at Module._compile (internal/modules/cjs/loader.js:1063:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)\n    at Module.load (internal/modules/cjs/loader.js:928:32)\n    at Function.Module._load (internal/modules/cjs/loader.js:769:14)\n    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)\n    at internal/main/run_main_module.js:17:47"}
+{"level":"error","message":"promise err promise err","stack":"Error: promise err\n    at Object.<anonymous> (D:\\Milk-Tea\\server\\server.js:72:26)\n    at Module._compile (internal/modules/cjs/loader.js:1063:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)\n    at Module.load (internal/modules/cjs/loader.js:928:32)\n    at Function.Module._load (internal/modules/cjs/loader.js:769:14)\n    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)\n    at internal/main/run_main_module.js:17:47"}
+{"level":"error","message":"promise err promise err","stack":"Error: promise err\n    at Object.<anonymous> (D:\\Milk-Tea\\server\\server.js:71:26)\n    at Module._compile (internal/modules/cjs/loader.js:1063:30)\n    at Object.Module._extensions..js (internal/modules/cjs/loader.js:1092:10)\n    at Module.load (internal/modules/cjs/loader.js:928:32)\n    at Function.Module._load (internal/modules/cjs/loader.js:769:14)\n    at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)\n    at internal/main/run_main_module.js:17:47"}
+{"message":"Connect successfully!!!","level":"info"}
+{"message":"Connect successfully!!!","level":"info"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:31:11.065Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:31:34.812Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:32:01.918Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:32:07.940Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:32:10.734Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:32:11.774Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:32:13.248Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:35:53.595Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:36:11.554Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:36:15.776Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:36:20.066Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:36:22.518Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:36:29.470Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:36:44.186Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:36:48.944Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:37:02.522Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:37:14.269Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:37:15.616Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:37:41.820Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:37:49.185Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:37:55.450Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:38:56.671Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:38:58.246Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:40:31.035Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:41:17.137Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:41:21.842Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:41:28.564Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:42:07.452Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:42:10.637Z"}
+{"level":"info","message":"http://localhost:9001/","timestamp":"2021-03-03T09:42:12.353Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:42:12.388Z"}
+{"level":"info","message":"http://localhost:9001/","timestamp":"2021-03-03T09:45:07.553Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:45:07.590Z"}
+{"level":"info","message":"http://localhost:9001/","timestamp":"2021-03-03T09:45:11.698Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:45:11.729Z"}
+{"level":"info","message":"http://localhost:9001/","timestamp":"2021-03-03T09:45:33.816Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:45:33.849Z"}
+{"level":"info","message":"http://localhost:9001/","timestamp":"2021-03-03T09:45:56.580Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:45:56.604Z"}
+{"level":"info","message":"http://localhost:9001/","timestamp":"2021-03-03T09:46:18.424Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:46:18.450Z"}
+{"level":"info","message":"http://localhost:9001/","timestamp":"2021-03-03T09:47:59.818Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:47:59.840Z"}
+{"level":"info","message":"http://localhost:9001/","timestamp":"2021-03-03T09:51:07.418Z"}
+{"level":"info","message":"Connect successfully!!!","timestamp":"2021-03-03T09:51:07.442Z"}
