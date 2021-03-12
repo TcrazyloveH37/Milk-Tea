@@ -4,9 +4,6 @@ const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-// Config
-const { validateObjectID } = require('../config/validateObjectID');
-
 const userSchema = new mongoose.Schema({
 	name: String,
 	email: { type: String, unique: true },
@@ -27,10 +24,6 @@ userSchema.methods.generateAuthToken = function() {
 };
 
 const User = mongoose.model('users', userSchema);
-
-const validateObjectIDOfUser = async usersID => {
-	return await validateObjectID(usersID, 'categoriesID', User);
-};
 
 const validateUser = async user => {
 	const userVerified = {};
@@ -105,6 +98,5 @@ const validateUser = async user => {
 
 module.exports = {
 	User,
-	validateObjectIDOfUser,
 	validateUser
 };

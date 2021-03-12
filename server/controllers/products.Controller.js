@@ -1,39 +1,38 @@
 // 3rd dependencies
 
 // Model
-const { Product, validateProduct, validateObjectIDOfProduct } = require('../models/product.Model');
-const { validateObjectIDOfCategory } = require('../models/category.Model');
-const { Trash } = require('../models/trash.Model');
+const { Product, validateProduct } = require('../models/product.Model');
+
+// Middelware
+const asyncMiddleware = require('../middleware/async.Middleware');
 
 const productsController = {};
 
 //-----------------------------------GET----------------------------------
 
 // [get] /api/products/category/:categoryID
-productsController.get_productsWithCategory = async (req, res) => {
-	const objError = await validateObjectIDOfCategory([ req.params.categoryID ]);
-	if (objError !== null) return res.status(404).send({ errors: { ...objError } });
-
-	const product = await Product.find({ categories: { _id: req.params.categoryID } }).populate(
+productsController.get_productsWithCategory = asyncMiddleware(async (req, res) => {
+	const products = await Product.find({ categories: { _id: req.params.categoryID } }).populate(
 		'categories'
 	);
 
-	return res.status(200).send(product);
-};
+	if (!products) return res.status(400).send([]);
+
+	return res.status(200).send(products);
+});
 
 // [get] /api/products/:_id
-productsController.get_oneProduct = async (req, res) => {
-	const objError = await validateObjectIDOfProduct([ req.params._id ]);
-	if (objError !== null) return res.status(404).send({ errors: { ...objError } });
+productsController.get_oneProduct = asyncMiddleware(async (req, res) => {
+	const product = await Product.findById(req.params._id).populate('category');
 
-	const product = await Product.findById(req.params._id).populate('categories');
+	if (!product) return res.status(400).send({ errors: 'Id Không Hợp Lệ' });
 
-	return res.send(product);
-};
+	return res.status(200).send(product);
+});
 
 // [get] /api/products/
 productsController.get_allProducts = async (req, res) => {
-	const allProducts = await Product.find().populate('categories');
+	const allProducts = await Product.find().populate('category');
 
 	res.send(allProducts);
 };
@@ -53,10 +52,7 @@ productsController.post = async (req, res) => {
 //-----------------------------------PUT----------------------------------
 
 // [put] /api/products/:_id
-productsController.put = async (req, res) => {
-	const objError = await validateObjectIDOfProduct([ req.params._id ]);
-	if (objError !== null) return res.status(404).send({ errors: { ...objError } });
-
+productsController.put = asyncMiddleware(async (req, res) => {
 	const { errors, productVerified } = await validateProduct(req.body);
 	if (!productVerified) return res.status(404).send({ errors: { ...errors } });
 
@@ -64,21 +60,21 @@ productsController.put = async (req, res) => {
 		new: true
 	});
 
+	if (!newProduct) return res.status(400).send({ errors: 'Không Tìm Thấy ID Hợp Lệ' });
+
 	return res.status(200).send(newProduct);
-};
+});
 
 //-----------------------------------DELETE----------------------------------
 
 // [patch] /api/products/:_id
 // soft delete product
-productsController.delete = async (req, res) => {
-	const objError = await validateObjectIDOfProduct([ req.params._id ]);
-	if (objError !== null) return res.status(404).send({ errors: { ...objError } });
+productsController.delete = asyncMiddleware(async (req, res) => {
+	const product = await Product.findByIdAndDelete(req.params._id);
 
-	const { _doc: product } = { ...(await Product.findByIdAndDelete(req.params._id)) };
-	const deletedProduct = await new Trash(product).save();
+	if (!product) return res.status(400).send({ errors: 'Không Tìm Thấy ID Hợp Lệ' });
 
-	return res.status(200).send(deletedProduct);
-};
+	return res.status(200).send(product);
+});
 
 module.exports = productsController;

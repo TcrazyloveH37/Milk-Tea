@@ -20,11 +20,11 @@ router.get('/', categoriesController.get_allCategories);
 
 //--------------------------------------------POST-----------------------------------------------
 //... post categories
-router.post('/', auth, categoriesController.post);
+router.post('/', [ auth, admin ], categoriesController.post);
 
 //--------------------------------------------PUT-----------------------------------------------
 //... put categories
-router.put('/:_id', categoriesController.put);
+router.put('/:_id', [ auth, admin ], categoriesController.put);
 
 //--------------------------------------------DELETE-----------------------------------------------
 //... delete categories

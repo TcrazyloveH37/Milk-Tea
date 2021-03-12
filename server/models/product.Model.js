@@ -1,27 +1,21 @@
 // 3rd dependencies
 const mongoose = require('mongoose');
-
-// Another Model
-const { validateObjectIDOfCategory } = require('./category.Model');
+const { Category } = require('./category.Model');
+const ObjectID = mongoose.Types.ObjectId;
 
 // CONSTANT
 const { default: { CATEGORY_ID } } = require('../config/const');
-
-// Config
-const { validateObjectID } = require('../config/validateObjectID');
 
 const productSchema = new mongoose.Schema(
 	{
 		// required
 		name: { type: String, default: 'Sản Phẩm Chưa Có Tên' },
 		price: { type: Number, default: 0 },
-		categories: [
-			{
-				type: mongoose.Schema.Types.ObjectId,
-				ref: 'categories',
-				default: CATEGORY_ID
-			}
-		],
+		category: {
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'categories',
+			default: CATEGORY_ID
+		},
 		// not required
 		saleOff: { type: Number, default: 0 },
 		descriptions: { type: Object, default: {} },
@@ -63,25 +57,21 @@ const validateProduct = async product => {
 	}
 	else if (product.descriptions) productVerified.descriptions = product.descriptions;
 
-	// CategoryIDcategoryIDs
-	if (product.categories && Array.isArray(product.categories) && product.categories.length >= 1) {
-		const objError = await validateObjectIDOfCategory(product.categories);
-		if (objError !== null) {
-			errors.categories = objError.categoriesID;
-		}
+	// CategoryID
+	if (product.category && typeof product.category !== 'string') {
+		errors.category = 'ID Loại Sản Phẩm Không Hợp Lệ';
+	}
+	else if (product.category) {
+		if (!ObjectID.isValid(product.category)) errors.category = 'ID Loại Sản Phẩm Không Hợp Lệ';
 		else {
-			productVerified.categories = [];
-			for (let id of product.categories) {
-				productVerified.categories.push(id);
-			}
+			const category = await Category.findById(product.category);
+
+			if (!category) errors.category = 'ID Loại Sản Phẩm Không Tồn Tại';
+			else productVerified.category = product.category;
 		}
 	}
-	else if (product.categories && !Array.isArray(product.categories)) {
-		errors.categories = 'Loại Sản Phẩm Không Hợp Lệ';
-	}
-	else {
-		productVerified.categories = [ CATEGORY_ID ];
-	}
+	else productVerified.category = [ CATEGORY_ID ];
+
 
 	if (Object.keys(errors).length >= 1) {
 		return {
@@ -96,26 +86,4 @@ const validateProduct = async product => {
 	};
 };
 
-const validateObjectIDOfProduct = async productsID => {
-	return await validateObjectID(productsID, 'productsID', Product);
-	// const errors = {};
-	// errors.productsID = {};
-
-	// for (let id of productsID) {
-	// 	if (!ObjectID.isValid(id)) {
-	// 		errors.productsID[id] = 'Sản Phẩm Không Hợp Lệ';
-	// 		continue;
-	// 	}
-
-	// 	const product = await Product.findById(id);
-	// 	if (!product) {
-	// 		errors.productsID[id] = 'Sản Phẩm Không Tồn Tại';
-	// 	}
-	// }
-
-	// if (Object.keys(errors.productsID).length >= 1) return errors;
-
-	// return null;
-};
-
-module.exports = { Product, validateProduct, validateObjectIDOfProduct };
+module.exports = { Product, validateProduct };

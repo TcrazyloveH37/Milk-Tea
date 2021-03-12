@@ -13,8 +13,7 @@ const userController = {};
 userController.get = async (req, res) => {
 	const user = await User.findById(req.user._id).select('-password');
 
-	if (!user)
-		return res.status(200).send({ error: { user: 'Tài Khoản Đã Bị Xoá Hoặc Không Tồn Tại' } });
+	if (!user) return res.status(400).send({ error: 'Tài Khoản Đã Bị Xoá Hoặc Không Tồn Tại' });
 
 	return res.status(200).send(user);
 };

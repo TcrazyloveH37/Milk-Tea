@@ -6,7 +6,7 @@ const express = require('express');
 // Init app
 const app = express();
 
-require('./startup/logging')();
+// require('./startup/logging')();
 require('./startup/routes')(app);
 require('./startup/db')();
 require('./startup/config')();

@@ -10,13 +10,11 @@ const authController = {};
 //-----------------------------------.../api/users/-------------------
 authController.post = async (req, res) => {
 	const user = await User.findOne({ email: req.body.email });
-	if (!user)
-		return res.status(400).send({ errors: { message: 'Email Hoặc Password Không Hợp Lệ' } });
+	if (!user) return res.status(400).send({ errors: 'Email Hoặc Password Không Hợp Lệ' });
 
 	const validPassword = bcrypt.compare(req.body.password, user.password);
 
-	if (!validPassword)
-		return res.status(400).send({ errors: { message: 'Email Hoặc Password Không Hợp Lệ' } });
+	if (!validPassword) return res.status(400).send({ errors: 'Email Hoặc Password Không Hợp Lệ' });
 
 	const token = user.generateAuthToken();
 

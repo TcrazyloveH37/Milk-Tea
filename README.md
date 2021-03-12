@@ -6,7 +6,9 @@ In the server folder
 
 ### `export NODE_ENV=custom-enviroment-variable`
 ### `export key=123`
-### `npm start`
+### `nodemon` if you have nodemon -g 
+OR
+### `node index.js`
 
 In the client folder
 
