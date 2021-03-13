@@ -19,7 +19,7 @@ describe('auth middeware', () => {
 
 	afterEach(async () => {
 		await Category.remove({});
-		server.close();
+		await server.close();
 	});
 
 	it('should return 401 if no token is provided', async () => {

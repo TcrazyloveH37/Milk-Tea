@@ -10,7 +10,7 @@ describe('/api/categories', () => {
 	});
 
 	afterEach(async () => {
-		server.close();
+		await server.close();
 		await Category.remove({});
 	});
 
