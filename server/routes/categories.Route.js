@@ -5,6 +5,7 @@ const router = express.Router();
 // Middleware
 const auth = require('../middleware/auth.Middleware');
 const admin = require('../middleware/admin.Middleware');
+const validateObjectId = require('../middleware/validateObjectId.Middleware');
 
 // Controller
 const categoriesController = require('../controllers/categories.Controller');
@@ -13,7 +14,7 @@ const categoriesController = require('../controllers/categories.Controller');
 
 //--------------------------------------------GET-----------------------------------------------
 //... get categories
-router.get('/:_id', categoriesController.get_oneCategory);
+router.get('/:_id', [ validateObjectId ], categoriesController.get_oneCategory);
 
 //... get all categories
 router.get('/', categoriesController.get_allCategories);

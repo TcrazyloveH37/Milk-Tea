@@ -12,7 +12,9 @@ require('./startup/db')();
 require('./startup/config')();
 
 // Open PORT
-const PORT = process.env.PORT || 9001;
-app.listen(PORT, () => {
+const PORT = process.env.PORT || 9000;
+const server = app.listen(PORT, () => {
 	winston.info(`http://localhost:${PORT}/`);
 });
+
+module.exports = server;

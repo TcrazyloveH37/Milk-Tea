@@ -35,7 +35,7 @@ categoriesController.get_allCategories = async (req, res) => {
 // [POST] /api/categories 			// create new category
 categoriesController.post = async (req, res) => {
 	const { errors, categoryVerified } = await validateCategory(req.body);
-	if (categoryVerified === null) return res.status(404).send({ errors: { ...errors } });
+	if (categoryVerified === null) return res.status(400).send({ errors: { ...errors } });
 
 	const newCategory = await new Category(categoryVerified).save();
 
@@ -49,7 +49,7 @@ categoriesController.put = asyncMiddleware(async (req, res) => {
 	if (!categoryVerified) return res.status(404).send({ errors: { ...errors } });
 
 	const newCategory = await Category.findByIdAndUpdate(req.params._id, categoryVerified, {
-		new: true
+		new: true,
 	});
 
 	if (!newCategory) return res.status(400).send({ errors: 'ID Không Hợp Lệ' });
